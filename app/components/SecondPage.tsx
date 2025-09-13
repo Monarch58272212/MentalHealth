@@ -136,7 +136,7 @@ export default function SecondPage({ images }: Url) {
           w={'100%'}
           flexDir={['column-reverse', 'row', 'row']}
         >
-          <Text maxW={'lg'} fontSize={'sm'}>
+          <Text maxW={'lg'} fontSize={'sm'} color={'gray.600'}>
             At Menta, we're redefining mental health support. Combining
             cutting-edge technology with compassionate care, we make therapy
             approachable, personalized, and stigma- free. Whether you're seeking
