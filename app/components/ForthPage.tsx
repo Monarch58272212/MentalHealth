@@ -34,8 +34,7 @@ export default function ForthPage({ forthPageImage }: ForthPage) {
         </Text>
       </Flex>
 
-      {/* Single Testimonial */}
-      <Flex align="center" gap={10}>
+      <Flex align="center" gap={10} display={['none', 'none', 'flex', 'flex']}>
         <Flex
           p={5}
           w="170px"
@@ -69,7 +68,6 @@ export default function ForthPage({ forthPageImage }: ForthPage) {
           </Flex>
         </Flex>
 
-        {/* Navigation */}
         <Flex gap={3} flexDir="column">
           <Button
             onClick={prev}
@@ -90,12 +88,10 @@ export default function ForthPage({ forthPageImage }: ForthPage) {
           </Button>
         </Flex>
 
-        {/* Testimonial Content */}
         <Flex w="50%">
           <Text>{testimonial.message}</Text>
         </Flex>
 
-        {/* Testimonial Image */}
         <Flex
           position="relative"
           w="30%"
@@ -113,6 +109,53 @@ export default function ForthPage({ forthPageImage }: ForthPage) {
               objectFit: 'cover',
             }}
           />
+        </Flex>
+      </Flex>
+
+      {/* Mobile*/}
+      <Flex
+        flexDir={'column'}
+        gap={3}
+        display={['flex', 'flex', 'none', 'none']}
+      >
+        <Flex
+          justify="flex-start"
+          align="center"
+          gap={2}
+          flexDir={'row'}
+          bottom={2}
+        >
+          <Avatar size="sm" name={testimonial.name} src={testimonial.avatar} />
+          <Flex flexDir="column">
+            <Text fontSize="xs">{testimonial.name}</Text>
+            <Text fontSize="xs">{testimonial.custumer}</Text>
+          </Flex>
+        </Flex>
+
+        <Flex m={'auto'} borderWidth={1} p={4} w="95%">
+          <Text color={'gray.700'} fontSize="sm">
+            {testimonial.message}
+          </Text>
+        </Flex>
+
+        <Flex gap={3}>
+          <Button
+            onClick={prev}
+            borderWidth={1}
+            bg="gray.300"
+            variant="ghost"
+            borderRadius="full"
+          >
+            <ArrowBackIcon />
+          </Button>
+          <Button
+            onClick={next}
+            variant="outline"
+            bg="gray.300"
+            borderRadius="full"
+          >
+            <ArrowForwardIcon />
+          </Button>
         </Flex>
       </Flex>
     </Flex>

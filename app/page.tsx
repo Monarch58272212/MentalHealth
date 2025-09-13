@@ -60,35 +60,40 @@ export default function Home() {
 
   const forthPageImage = [
     {
-      avatar: 'https://bit.ly/kent-c-dodds',
+      avatar:
+        'https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfHx8MA%3D%3D',
       name: 'Monarch',
       custumer: 'Patient',
       message:
         'Menta has completely transformed how I approach mental health. Its user-friendly, highly intuitive, and provides genuine support that feels personal and effective. I truly recommend it to anyone seeking growth.',
     },
     {
-      avatar: 'https://bit.ly/kent-c-dodds',
+      avatar:
+        'https://images.unsplash.com/photo-1514626585111-9aa86183ac98?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhY2V8ZW58MHx8MHx8fDA%3D',
       name: 'Christine',
       custumer: 'Patient',
       message:
         'Therapy used to feel intimidating, but Menta made it feel natural. I now look forward to every session.',
     },
     {
-      avatar: 'https://bit.ly/kent-c-dodds',
+      avatar:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZXxlbnwwfHwwfHx8MA%3D%3D',
       name: 'Bacalso',
       custumer: 'Patient',
       message:
         'Menta is more than just a tool — it’s a companion in my healing journey.',
     },
     {
-      avatar: 'https://bit.ly/kent-c-dodds',
+      avatar:
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGZhY2V8ZW58MHx8MHx8fDA%3D',
       name: 'Reyno',
       custumer: 'Patient',
       message:
         'I was hesitant at first, but Menta showed me that taking care of my mental health can be empowering.',
     },
     {
-      avatar: 'https://bit.ly/kent-c-dodds',
+      avatar:
+        'https://plus.unsplash.com/premium_photo-1671656333460-793292581bc6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZhY2V8ZW58MHx8MHx8fDA%3D',
       name: 'Melody',
       custumer: 'Patient',
       message:
@@ -107,7 +112,7 @@ export default function Home() {
       <FirstPage />
       <SecondPage images={images} />
       <ThirdPage thirdPageImage={thirdPageImage} />
-      {/*<ForthPage forthPageImage={forthPageImage} /> */}
+      <ForthPage forthPageImage={forthPageImage} />
     </Flex>
   );
 }
