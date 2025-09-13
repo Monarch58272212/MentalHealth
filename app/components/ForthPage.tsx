@@ -20,15 +20,7 @@ export default function ForthPage({ forthPageImage }: ForthPage) {
   const testimonial = forthPageImage[index];
 
   return (
-    <Flex
-      w="100%"
-      mt={[3, 5, 7, 10]}
-      px={8}
-      gap={3}
-      mb={10}
-      flexDir="column"
-      display={'none'} //ginone sa pansamantala
-    >
+    <Flex w="100%" mt={[3, 5, 7, 10]} px={8} gap={3} mb={10} flexDir="column">
       <Flex justify="space-between" flexDir={['column', 'row']} w="100%">
         <Flex flexDir="column">
           <Text fontSize={['sm', 'md', 'md']}>• Testimonial</Text>

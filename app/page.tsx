@@ -107,7 +107,7 @@ export default function Home() {
       <FirstPage />
       <SecondPage images={images} />
       <ThirdPage thirdPageImage={thirdPageImage} />
-      <ForthPage forthPageImage={forthPageImage} />
+      {/*<ForthPage forthPageImage={forthPageImage} /> */}
     </Flex>
   );
 }
