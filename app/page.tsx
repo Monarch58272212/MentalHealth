@@ -1,11 +1,13 @@
 'use client';
 
-import { Avatar, Flex } from '@chakra-ui/react';
+import { Avatar, Flex, Icon } from '@chakra-ui/react';
 import FirstPage from './components/FirstPage';
 import SecondPage from './components/SecondPage';
 import ThirdPage from './components/ThirdPage';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import ForthPage from './components/ForthPage';
+import FifthPage from './components/FifthPage';
+import SixthPage from './components/SixthPage';
 
 export default function Home() {
   const images = [
@@ -101,6 +103,48 @@ export default function Home() {
     },
   ];
 
+  const fifthPageImage = [
+    {
+      images:
+        'https://plus.unsplash.com/premium_photo-1661583648651-e00d6358037f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIwfHx8ZW58MHx8fHx8',
+      name: 'Michael Nguyen, M.S.W.',
+      position: 'Licensed Clinical Social Worker',
+      icon: <ArrowForwardIcon />,
+    },
+    {
+      images:
+        'https://images.unsplash.com/photo-1726806387153-986d667d66fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHdpdGglMjBnbGFzc2V8ZW58MHx8MHx8fDA%3D',
+      name: 'Michael Nguyen, M.S.W.',
+      position: 'Licensed Clinical Social Worker',
+      icon: <ArrowForwardIcon />,
+    },
+    {
+      images:
+        'https://plus.unsplash.com/premium_photo-1672239496290-5061cfee7ebb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMHdpdGglMjBnbGFzc2V8ZW58MHx8MHx8fDA%3D',
+      name: 'Michael Nguyen, M.S.W.',
+      position: 'Licensed Clinical Social Worker',
+      icon: <ArrowForwardIcon />,
+    },
+  ];
+
+  const sixthPageImage = [
+    {
+      title: 'Sign Up',
+      icon: <ArrowForwardIcon />,
+      description: 'Create your account and set up your profile.',
+    },
+    {
+      title: 'Connect',
+      icon: <ArrowForwardIcon />,
+      description: 'Get matched with a therapist or explore our resources.',
+    },
+    {
+      title: 'Thrive',
+      icon: <ArrowForwardIcon />,
+      description: 'Begin your journey toward mental wellness.',
+    },
+  ];
+
   return (
     <Flex
       flexDir={'column'}
@@ -113,6 +157,8 @@ export default function Home() {
       <SecondPage images={images} />
       <ThirdPage thirdPageImage={thirdPageImage} />
       <ForthPage forthPageImage={forthPageImage} />
+      <FifthPage fifthPageImage={fifthPageImage} />
+      <SixthPage />
     </Flex>
   );
 }

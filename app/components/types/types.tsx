@@ -18,3 +18,10 @@ export interface ForthImage {
   custumer: string;
   message: string;
 }
+
+export interface FifthImage {
+  images: string;
+  name: string;
+  position: string;
+  icon: React.ReactNode;
+}
