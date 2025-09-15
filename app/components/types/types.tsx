@@ -25,3 +25,9 @@ export interface FifthImage {
   position: string;
   icon: React.ReactNode;
 }
+
+export interface SixthImage {
+  title: string;
+  icon: React.ReactNode;
+  description: string;
+}

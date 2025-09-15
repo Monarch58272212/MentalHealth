@@ -1,6 +1,10 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react';
+import { SixthImage } from './types/types';
+interface SixthPage {
+  sixthPageImage: SixthImage[];
+}
 
-export default function SixthPage() {
+export default function SixthPage({ sixthPageImage }: SixthPage) {
   return (
     <Flex w="100%" mt={[3, 5, 7, 10]} px={8} gap={3} mb={10} flexDir="column">
       <Flex justify="space-between" flexDir={['column', 'row']} w="100%">
@@ -17,6 +21,37 @@ export default function SixthPage() {
           mental wellness.
         </Text>
       </Flex>
+
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing={5}>
+        {sixthPageImage.map((p, i) => (
+          <Box
+            bg={'gray.300'}
+            key={i}
+            position="relative"
+            w="100%"
+            h={['200px', '200px', '200px', '250px']}
+            borderRadius="md"
+            overflow="hidden"
+            justifyContent={'center'}
+            display={'flex'}
+            alignItems={'flex-end'}
+          >
+            <Flex
+              h={'100%'}
+              borderRadius={10}
+              p={4}
+              justify={'space-around'}
+              align={'center'}
+              flexDir={'column'}
+              mb={3}
+            >
+              <Text fontSize={'sm'}>{p.description}</Text>
+              <Text fontSize={'6xl'}>{p.icon}</Text>
+              <Text fontSize={'lg'}>{p.title}</Text>
+            </Flex>
+          </Box>
+        ))}
+      </SimpleGrid>
     </Flex>
   );
 }

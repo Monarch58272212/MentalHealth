@@ -8,6 +8,11 @@ import { ArrowForwardIcon } from '@chakra-ui/icons';
 import ForthPage from './components/ForthPage';
 import FifthPage from './components/FifthPage';
 import SixthPage from './components/SixthPage';
+import { SiGnuprivacyguard } from 'react-icons/si';
+import { GrConnect } from 'react-icons/gr';
+import { TbWorldShare } from 'react-icons/tb';
+import SeventhPage from './components/SeventhPage';
+import EighthPage from './components/EighthPage';
 
 export default function Home() {
   const images = [
@@ -130,17 +135,17 @@ export default function Home() {
   const sixthPageImage = [
     {
       title: 'Sign Up',
-      icon: <ArrowForwardIcon />,
+      icon: <SiGnuprivacyguard />,
       description: 'Create your account and set up your profile.',
     },
     {
       title: 'Connect',
-      icon: <ArrowForwardIcon />,
+      icon: <GrConnect />,
       description: 'Get matched with a therapist or explore our resources.',
     },
     {
       title: 'Thrive',
-      icon: <ArrowForwardIcon />,
+      icon: <TbWorldShare />,
       description: 'Begin your journey toward mental wellness.',
     },
   ];
@@ -158,7 +163,9 @@ export default function Home() {
       <ThirdPage thirdPageImage={thirdPageImage} />
       <ForthPage forthPageImage={forthPageImage} />
       <FifthPage fifthPageImage={fifthPageImage} />
-      <SixthPage />
+      <SixthPage sixthPageImage={sixthPageImage} />
+      <SeventhPage />
+      <EighthPage />
     </Flex>
   );
 }
