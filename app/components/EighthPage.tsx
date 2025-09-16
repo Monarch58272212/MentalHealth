@@ -29,7 +29,6 @@ export default function EighthPage() {
           innovative, and stigma-free mental health support.
         </Text>
         <Flex
-          borderWidth={1}
           w={'100%'}
           flexDir={['column', 'column', 'row', 'row']}
           justify={'space-between'}

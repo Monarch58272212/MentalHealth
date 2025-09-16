@@ -5,7 +5,7 @@ export default function FirstPage() {
   return (
     <Flex
       w="100%"
-      h="100vh"
+      h={['80vh', '80vh', '100vh', '100vh']}
       justify="flex-end"
       align="flex-start"
       bgImage="url('/first.png')"
