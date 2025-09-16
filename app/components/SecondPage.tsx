@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Images } from './types/types';
+import { useName } from '../chakra_ui/UserProviderSample';
 
 interface Url {
   images: Images[];
@@ -37,6 +38,8 @@ export default function SecondPage({ images }: Url) {
   const previous = () => {
     setCurrentIndex((p) => (p === 0 ? images.length - 1 : p - 1));
   };
+
+  const { name } = useName();
   return (
     <Flex
       mt={[3, 5, 7, 10]}
@@ -92,6 +95,7 @@ export default function SecondPage({ images }: Url) {
         <Text fontSize={['lg', 'lg', '3xl']}>
           Why Choose Mental For <br /> Your Mental Health Wellness?{' '}
         </Text>
+        <Text>{name}</Text>
 
         <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 3, 4]}>
           {images.map((img, index) => (

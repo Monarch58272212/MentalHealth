@@ -2,7 +2,6 @@
 
 import { Flex } from '@chakra-ui/react';
 import FirstPage from './components/FirstPage';
-const SecondPage = lazy(() => import('./components/SecondPage'));
 import ThirdPage from './components/ThirdPage';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import ForthPage from './components/ForthPage';
@@ -13,8 +12,7 @@ import { GrConnect } from 'react-icons/gr';
 import { TbWorldShare } from 'react-icons/tb';
 import SeventhPage from './components/SeventhPage';
 import EighthPage from './components/EighthPage';
-import { lazy, Suspense } from 'react';
-import Skeleton from './components/ui/Skeleton';
+import SecondPage from './components/SecondPage';
 
 export default function Home() {
   const images = [
@@ -161,10 +159,7 @@ export default function Home() {
       bg="gray.100"
     >
       <FirstPage />
-      <Suspense fallback={<Skeleton />}>
-        <SecondPage images={images} />
-      </Suspense>
-
+      <SecondPage images={images} />
       <ThirdPage thirdPageImage={thirdPageImage} />
       <ForthPage forthPageImage={forthPageImage} />
       <FifthPage fifthPageImage={fifthPageImage} />
