@@ -11,6 +11,7 @@ interface ForthPage {
 }
 
 export default function ForthPage({ forthPageImage }: ForthPage) {
+  console.log(`4th rendered`);
   const [index, setIndex] = useState(0);
   const total = forthPageImage.length;
 
@@ -20,7 +21,16 @@ export default function ForthPage({ forthPageImage }: ForthPage) {
   const testimonial = forthPageImage[index];
 
   return (
-    <Flex w="100%" mt={[3, 5, 7, 10]} px={8} gap={3} mb={10} flexDir="column">
+    <Flex
+      w="100%"
+      mt={[3, 5, 7, 10]}
+      px={8}
+      gap={3}
+      mb={10}
+      flexDir="column"
+      style={{ scrollMarginTop: '100px' }}
+      id="testimonial"
+    >
       <Flex justify="space-between" flexDir={['column', 'row']} w="100%">
         <Flex flexDir="column">
           <Text fontSize={['sm', 'md', 'md']}>• Testimonial</Text>

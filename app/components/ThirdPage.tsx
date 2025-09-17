@@ -7,8 +7,11 @@ interface ThirdPageData {
 }
 
 export default function ThirdPage({ thirdPageImage }: ThirdPageData) {
+  console.log(`3rd rendered`);
   return (
     <Flex
+      style={{ scrollMarginTop: '100px' }}
+      id="features"
       w={'100%'}
       mt={[3, 5, 7, 10]}
       px={8}

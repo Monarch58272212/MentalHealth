@@ -12,15 +12,17 @@ import {
   SimpleGrid,
   Text,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Images } from './types/types';
 import { useName } from '../chakra_ui/UserProviderSample';
+import Title from '../ChildComponent/Title';
 
 interface Url {
   images: Images[];
 }
 
 export default function SecondPage({ images }: Url) {
+  console.log(`2nd rendered`);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -32,16 +34,18 @@ export default function SecondPage({ images }: Url) {
   }, [images.length]);
 
   const next = () => {
+    console.log(`next function is renddered`);
     setCurrentIndex((n) => (n === images.length - 1 ? 0 : n + 1));
   };
-
   const previous = () => {
+    console.log(`next function is renddered`);
     setCurrentIndex((p) => (p === 0 ? images.length - 1 : p - 1));
   };
 
-  const { name } = useName();
   return (
     <Flex
+      id="about"
+      style={{ scrollMarginTop: '100px' }}
       mt={[3, 5, 7, 10]}
       w="100%"
       p={8}
@@ -77,6 +81,7 @@ export default function SecondPage({ images }: Url) {
           flexDir={['row']}
         >
           <Text fontSize={['xs', 'md', 'md']}>Have a Questions?</Text>
+
           <Avatar
             size="sm"
             name="Kent Dodds"
@@ -95,7 +100,6 @@ export default function SecondPage({ images }: Url) {
         <Text fontSize={['lg', 'lg', '3xl']}>
           Why Choose Mental For <br /> Your Mental Health Wellness?{' '}
         </Text>
-        <Text>{name}</Text>
 
         <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 3, 4]}>
           {images.map((img, index) => (

@@ -13,6 +13,8 @@ import { TbWorldShare } from 'react-icons/tb';
 import SeventhPage from './components/SeventhPage';
 import EighthPage from './components/EighthPage';
 import SecondPage from './components/SecondPage';
+import Practice from './components/Practice';
+import ParentComponent from './components/ParentComponent';
 
 export default function Home() {
   const images = [
@@ -158,6 +160,7 @@ export default function Home() {
       align={'center'}
       bg="gray.100"
     >
+      {/*<ParentComponent />*/}
       <FirstPage />
       <SecondPage images={images} />
       <ThirdPage thirdPageImage={thirdPageImage} />

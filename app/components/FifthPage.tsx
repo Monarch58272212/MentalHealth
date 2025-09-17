@@ -7,8 +7,18 @@ interface FifthPage {
 }
 
 export default function ({ fifthPageImage }: FifthPage) {
+  console.log(`5th rendered`);
   return (
-    <Flex w="100%" mt={[3, 5, 7, 10]} px={8} gap={3} mb={10} flexDir="column">
+    <Flex
+      style={{ scrollMarginTop: '100px' }}
+      w="100%"
+      mt={[3, 5, 7, 10]}
+      px={8}
+      gap={3}
+      mb={10}
+      flexDir="column"
+      id="team"
+    >
       <Flex justify="space-between" flexDir={['column', 'row']} w="100%">
         <Flex flexDir="column">
           <Text fontSize={['sm', 'md', 'md']}>• Meet Our Experts</Text>

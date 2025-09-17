@@ -31,3 +31,8 @@ export interface SixthImage {
   icon: React.ReactNode;
   description: string;
 }
+
+// types.ts
+export type State = number; // Isang number lang!
+
+export type Action = { type: 'INCREMENT' } | { type: 'DECREMENT' };

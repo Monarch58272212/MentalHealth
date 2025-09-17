@@ -2,8 +2,10 @@ import { Avatar, Button, Flex, Text } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 export default function FirstPage() {
+  console.log(`1st rendered`);
   return (
     <Flex
+      id="home"
       w="100%"
       h={['80vh', '80vh', '100vh', '100vh']}
       justify="flex-end"

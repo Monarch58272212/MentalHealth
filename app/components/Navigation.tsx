@@ -7,12 +7,12 @@ import NavigationMenu from './NavigationMenu';
 
 export default function Navigation() {
   const links = [
-    { name: 'Home', href: '#' },
-    { name: 'About Us', href: '#' },
-    { name: 'Features & Benifits', href: '#' },
-    { name: 'Testimonial', href: '#' },
-    { name: 'How It Works', href: '#' },
-    { name: 'Team', href: '#' },
+    { name: 'Home', href: '#home' },
+    { name: 'About Us', href: '#about' },
+    { name: 'Features & Benefits', href: '#features' },
+    { name: 'Testimonial', href: '#testimonial' },
+    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Team', href: '#team' },
   ];
 
   return (

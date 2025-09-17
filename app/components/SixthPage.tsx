@@ -5,8 +5,18 @@ interface SixthPage {
 }
 
 export default function SixthPage({ sixthPageImage }: SixthPage) {
+  console.log(`6th rendered`);
   return (
-    <Flex w="100%" mt={[3, 5, 7, 10]} px={8} gap={3} mb={10} flexDir="column">
+    <Flex
+      w="100%"
+      mt={[3, 5, 7, 10]}
+      px={8}
+      gap={3}
+      mb={10}
+      flexDir="column"
+      style={{ scrollMarginTop: '100px' }}
+      id="how-it-works"
+    >
       <Flex justify="space-between" flexDir={['column', 'row']} w="100%">
         <Flex flexDir="column">
           <Text fontSize={['sm', 'md', 'md']}>• How It Works</Text>

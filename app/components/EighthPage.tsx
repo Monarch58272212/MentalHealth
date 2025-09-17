@@ -4,6 +4,7 @@ import { FaInstagram, FaLinkedin, FaTiktok } from 'react-icons/fa';
 import { MdAddCall, MdOutlineMail } from 'react-icons/md';
 
 export default function EighthPage() {
+  console.log(`8th rendered`);
   return (
     <Flex
       w="100%"

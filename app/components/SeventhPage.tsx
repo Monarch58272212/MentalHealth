@@ -2,6 +2,7 @@ import { PhoneIcon } from '@chakra-ui/icons';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
 export default function SeventhPage() {
+  console.log(`7th rendered`);
   return (
     <Flex
       w="95%"
