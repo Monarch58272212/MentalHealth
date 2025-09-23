@@ -24,13 +24,14 @@ export default function Navigation() {
       position="fixed"
       top={0}
       zIndex={1000}
-      p={[5, 4, 3]}
+      p={[3, 4, 3]}
       backdropFilter="blur(5px)"
       color={'black'}
     >
       <Flex>
-        <Image src="/logo.png" alt={'logo'} width={90} height={70} priority />
+        <Image src="/logo.png" alt="logo" width={90} height={90} />
       </Flex>
+
       <Flex gap={30} display={['none', 'none', 'none', 'flex']}>
         {links.map((link, index) => (
           <Flex key={index}>

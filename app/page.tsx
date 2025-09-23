@@ -2,10 +2,17 @@
 
 import { Flex } from '@chakra-ui/react';
 import FirstPage from './components/FirstPage';
-import ThirdPage from './components/ThirdPage';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
+const ThirdPage = dynamic(() => import('./components/ThirdPage'), {
+  loading: () => <ExpertsSkeleton />,
+  ssr: false,
+});
 import ForthPage from './components/ForthPage';
-import FifthPage from './components/FifthPage';
+const FifthPage = dynamic(() => import('./components/FifthPage'), {
+  loading: () => <ExpertsSkeleton />,
+  ssr: false,
+});
+
 import SixthPage from './components/SixthPage';
 import { SiGnuprivacyguard } from 'react-icons/si';
 import { GrConnect } from 'react-icons/gr';
@@ -13,8 +20,11 @@ import { TbWorldShare } from 'react-icons/tb';
 import SeventhPage from './components/SeventhPage';
 import EighthPage from './components/EighthPage';
 import SecondPage from './components/SecondPage';
-import Practice from './components/Practice';
-import ParentComponent from './components/ParentComponent';
+import UseImperativeHandle from './components/Hooks/UseImperativeHandle';
+import ExpertsSkeleton from './components/ui/FifthSkeleton';
+import { lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import ThirdSkeleton from './components/ui/ThirdSkeleton';
 
 export default function Home() {
   const images = [
@@ -160,7 +170,7 @@ export default function Home() {
       align={'center'}
       bg="gray.100"
     >
-      {/*<ParentComponent />*/}
+      {/*    <UseImperativeHandle />*/}
       <FirstPage />
       <SecondPage images={images} />
       <ThirdPage thirdPageImage={thirdPageImage} />

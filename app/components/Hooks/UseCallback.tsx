@@ -1,8 +1,8 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
-import Title from '../ChildComponent/Title';
+import Title from '../../ChildComponent/Title';
 import { useCallback, useState } from 'react';
-import Count from './Count';
-import Buttonss from './Buttonss';
+import Count from '../Count';
+import Buttonss from '../Buttonss';
 
 export default function () {
   const [age, setAge] = useState(25);
