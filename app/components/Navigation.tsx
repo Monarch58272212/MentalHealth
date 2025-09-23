@@ -26,7 +26,7 @@ export default function Navigation() {
       zIndex={1000}
       p={[3, 4, 3]}
       backdropFilter="blur(5px)"
-      color={'black'}
+      color={'white'}
     >
       <Flex>
         <Image src="/logo.png" alt="logo" width={90} height={90} />

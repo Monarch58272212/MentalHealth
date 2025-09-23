@@ -10,13 +10,13 @@ export default function FirstPage() {
       h={['80vh', '80vh', '100vh', '100vh']}
       justify="flex-end"
       align="flex-start"
-      bgImage="url('/first.png')"
+      bgImage="url('/FirstPage.jpg')"
       bgSize="cover"
       bgPos="center"
       bgRepeat="no-repeat"
       position="relative"
       flexDir={'column'}
-      color={'black'}
+      color={'white'}
       borderRadius={'3xl'}
     >
       <Flex ml={'2%'} flexDir={'column'} gap={2} backdropFilter="blur(1px)">
@@ -26,7 +26,7 @@ export default function FirstPage() {
           </Text>
 
           <Text
-            color={'gray.700'}
+            color={'WhiteAlpha.800'}
             fontSize={['xs', 'md', 'lg']}
             w={['90%', '80', '100%']}
           >
@@ -43,9 +43,8 @@ export default function FirstPage() {
         >
           <Button
             color={'black'}
-            colorScheme="black"
             borderRadius={'full'}
-            variant={'outline'}
+            variant={'solid'}
             size={['sm', 'md']}
           >
             Get Started Today
