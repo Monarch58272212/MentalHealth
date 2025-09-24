@@ -1,3 +1,4 @@
+'use client';
 import {
   ArrowBackIcon,
   ArrowForwardIcon,
@@ -11,35 +12,56 @@ import {
   Image,
   SimpleGrid,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
-import { Images } from './types/types';
-import { useName } from '../chakra_ui/UserProviderSample';
-import Title from '../ChildComponent/Title';
-
-interface Url {
-  images: Images[];
+interface PageProps {
+  id: string;
+  secondImage: string;
+  description: string;
 }
-
-export default function SecondPage({ images }: Url) {
+export default function SecondPage() {
   console.log(`2nd rendered`);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [data, setData] = useState<PageProps[]>([]);
+  const toast = useToast();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('/api/secondPage');
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData(); // first load
+
+    const interval = setInterval(() => {
+      fetchData(); // auto refresh every 5s
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((next) => (next === images.length - 1 ? 0 : next + 1));
+      setCurrentIndex((next) => (next === data.length - 1 ? 0 : next + 1));
     }, 4000);
 
     return () => clearInterval(interval); // cleanup on unmount
-  }, [images.length]);
+  }, [data.length]);
 
   const next = () => {
     console.log(`next function is renddered`);
-    setCurrentIndex((n) => (n === images.length - 1 ? 0 : n + 1));
+    setCurrentIndex((n) => (n === data.length - 1 ? 0 : n + 1));
   };
   const previous = () => {
     console.log(`next function is renddered`);
-    setCurrentIndex((p) => (p === 0 ? images.length - 1 : p - 1));
+    setCurrentIndex((p) => (p === 0 ? data.length - 1 : p - 1));
   };
 
   return (
@@ -102,7 +124,7 @@ export default function SecondPage({ images }: Url) {
         </Text>
 
         <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 3, 4]}>
-          {images.map((img, index) => (
+          {data.map((img, index) => (
             <Box
               m={'auto'}
               key={index}
@@ -121,14 +143,13 @@ export default function SecondPage({ images }: Url) {
               boxShadow="md"
             >
               <Image
-                src={img.Imageurl}
+                src={img.secondImage}
                 alt={`Slide ${index + 1}`}
                 w="100%"
                 h="100%"
                 objectFit="cover"
                 borderRadius="lg"
                 transition="all 0.4s ease-in-out"
-                // 👇 Blur the image if NOT the current one
                 style={{
                   filter: currentIndex === index ? 'none' : 'blur(4px)',
                   transform:

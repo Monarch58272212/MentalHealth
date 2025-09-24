@@ -1,4 +1,4 @@
-import { State, Action } from '../components/types/types';
+import { State, Action } from '../types/types';
 
 export const initialState: State = 0;
 

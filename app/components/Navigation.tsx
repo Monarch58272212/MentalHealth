@@ -29,7 +29,9 @@ export default function Navigation() {
       color={'white'}
     >
       <Flex>
-        <Image src="/logo.png" alt="logo" width={90} height={90} />
+        <Link href="/">
+          <Image src="/logo.png" alt="logo" width={90} height={90} />
+        </Link>
       </Flex>
 
       <Flex gap={30} display={['none', 'none', 'none', 'flex']}>
