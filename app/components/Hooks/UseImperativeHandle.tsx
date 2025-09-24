@@ -13,7 +13,7 @@ export default function Home() {
         Focus Username
       </button>
       <button onClick={() => usernameRef.current?.reset()}>
-        Reset Username
+        Reset Usernamefsffgit
       </button>
     </div>
   );
