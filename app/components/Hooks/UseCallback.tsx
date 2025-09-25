@@ -28,7 +28,7 @@ export default function () {
       <Flex p={5} flexDir={'column'} borderWidth={1}>
         <Count text="Age" count={age} />
         <Buttonss colorScheme="green" handleClick={handleAge}>
-          Age Button ambot oi
+          Age Button
         </Buttonss>
       </Flex>
       <Flex p={5} flexDir={'column'} borderWidth={1}>
