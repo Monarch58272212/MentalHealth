@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -9,7 +9,9 @@ import {
   Stack,
   Heading,
   useToast,
+  SimpleGrid,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 
 interface PageProps {
   id: string;
@@ -66,8 +68,31 @@ export default function Page() {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/api/secondPage');
+        const result = await res.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
-    <Flex minH="100vh" align="center" justify="center" bg="gray.50" px={4}>
+    <Flex
+      minH="100vh"
+      align="center"
+      flexDir={'column'}
+      justify="center"
+      bg="gray.50"
+      mt={20}
+      px={4}
+      w={'100%'}
+      borderWidth={2}
+    >
       <Box
         bg="white"
         p={8}
@@ -95,6 +120,46 @@ export default function Page() {
           </Button>
         </Stack>
       </Box>
+
+      <SimpleGrid spacing={4} minChildWidth="250px" w="100%" mt={6}>
+        {data.map((item) => (
+          <Box
+            key={item.id}
+            p={4}
+            borderWidth={1}
+            borderRadius="md"
+            w="100%"
+            h="200px"
+            position="relative"
+          >
+            {item.secondImage ? (
+              <Image
+                src={item.secondImage}
+                alt="Second Page Image"
+                fill
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
+              />
+            ) : (
+              <Box
+                position="absolute"
+                top="0"
+                left="0"
+                right="0"
+                bottom="0"
+                bg="gray.200"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                borderRadius="8px"
+              >
+                <Heading size="sm" color="gray.500">
+                  No Image
+                </Heading>
+              </Box>
+            )}
+          </Box>
+        ))}
+      </SimpleGrid>
     </Flex>
   );
 }
