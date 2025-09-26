@@ -1,4 +1,5 @@
 'use client';
+
 import {
   ArrowBackIcon,
   ArrowForwardIcon,
@@ -14,55 +15,68 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import SecondSkeleton from './ui/SecondSkeleton';
+
 interface PageProps {
   id: string;
   secondImage: string;
   description: string;
 }
+
 export default function SecondPage() {
-  console.log(`2nd rendered`);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState<PageProps[]>([]);
+  const [loading, setLoading] = useState(true);
   const toast = useToast();
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('/api/secondPage');
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // optional delay
+
+      const response = await fetch('/api/secondPage');
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
       }
+
+      const result = await response.json();
+      setData(result);
+    } catch (error: any) {
+      console.error('Error fetching data:', error);
+      toast({
+        title: 'Failed to load data',
+        description: error.message || 'Please try again later.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    } finally {
+      setLoading(false);
     }
-
-    fetchData(); // first load
-
-    const interval = setInterval(() => {
-      fetchData(); // auto refresh every 5s
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((next) => (next === data.length - 1 ? 0 : next + 1));
-    }, 4000);
+    fetchData();
+  }, [fetchData]);
 
-    return () => clearInterval(interval); // cleanup on unmount
+  const next = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % data.length);
   }, [data.length]);
 
-  const next = () => {
-    console.log(`next function is renddered`);
-    setCurrentIndex((n) => (n === data.length - 1 ? 0 : n + 1));
-  };
-  const previous = () => {
-    console.log(`next function is renddered`);
-    setCurrentIndex((p) => (p === 0 ? data.length - 1 : p - 1));
-  };
+  const previous = useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
+  }, [data.length]);
+
+  if (loading) return <SecondSkeleton />;
+
+  if (!loading && data.length === 0) {
+    return (
+      <Flex justify="center" align="center" p={10}>
+        <Text>No data found.</Text>
+      </Flex>
+    );
+  }
 
   return (
     <Flex
@@ -77,33 +91,30 @@ export default function SecondPage() {
       gap={3}
       flexDir={['column', 'column', 'column', 'row']}
     >
+      {/* Left Banner Image Section */}
       <Flex
-        maxW={['300px']}
+        maxW="300px"
         borderRadius="lg"
-        position={'relative'}
+        position="relative"
         boxShadow="lg"
-        flexDir={'column'}
+        flexDir="column"
       >
         <Image
           src="/secondPage.jpg"
           alt="Banner"
-          style={{
-            objectFit: 'contain',
-            borderRadius: '0.5rem',
-          }}
+          style={{ objectFit: 'contain', borderRadius: '0.5rem' }}
         />
         <Flex
-          justify={'center'}
-          align={'center'}
+          justify="center"
+          align="center"
           gap={2}
-          position={'absolute'}
+          position="absolute"
           bottom={2}
           right={10}
-          color={'white'}
-          flexDir={['row']}
+          color="white"
+          flexDir="row"
         >
-          <Text fontSize={['xs', 'md', 'md']}>Have a Questions?</Text>
-
+          <Text fontSize={['xs', 'md']}>Have a Questions?</Text>
           <Avatar
             size="sm"
             name="Kent Dodds"
@@ -112,80 +123,90 @@ export default function SecondPage() {
           <ExternalLinkIcon />
         </Flex>
       </Flex>
+
+      {/* Right Content Section */}
       <Flex
-        flexDir={'column'}
-        align={'flex-start'}
-        justify={'flex-start'}
+        flexDir="column"
+        align="flex-start"
+        justify="flex-start"
         gap={3}
+        flex={1}
       >
-        <Text fontSize={['sm', 'md', 'md']}>• About Us</Text>
+        <Text fontSize={['sm', 'md']}>• About Us</Text>
         <Text fontSize={['lg', 'lg', '3xl']}>
-          Why Choose Mental For <br /> Your Mental Health Wellness?{' '}
+          Why Choose Mental For <br /> Your Mental Health Wellness?
         </Text>
 
-        <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 3, 4]}>
-          {data.map((img, index) => (
-            <Box
-              m={'auto'}
-              key={index}
-              w="100%"
-              h={
-                currentIndex === index
-                  ? ['90%', '150px', '150px', '190px']
-                  : ['90%', '150px', '150px', '150px']
-              }
-              overflow="hidden"
-              borderRadius="lg"
-              bg="rgba(255, 255, 255, 0.1)" // transparent white for glass effect
-              backdropFilter="blur(10px)" // blur background behind box
-              border="1px solid rgba(255, 255, 255, 0.2)"
-              position="relative"
-              boxShadow="md"
-            >
-              <Image
-                src={img.secondImage}
-                alt={`Slide ${index + 1}`}
+        {/* Image Slider Grid */}
+        <SimpleGrid spacing={[0, 1, 2]} columns={[1, 2, 3, 4]}>
+          {data.map((img, index) => {
+            const isActive = currentIndex === index;
+            return (
+              <Box
+                key={img.id}
+                m="auto"
                 w="100%"
-                h="100%"
-                objectFit="cover"
+                h={
+                  isActive
+                    ? ['90%', '150px', '190px']
+                    : ['90%', '150px', '150px']
+                }
+                overflow="hidden"
                 borderRadius="lg"
-                transition="all 0.4s ease-in-out"
-                style={{
-                  filter: currentIndex === index ? 'none' : 'blur(4px)',
-                  transform:
-                    currentIndex === index ? 'scale(1)' : 'scale(1.05)',
-                }}
-              />
-            </Box>
-          ))}
+                bg="rgba(255, 255, 255, 0.1)"
+                backdropFilter="blur(10px)"
+                border="1px solid rgba(255, 255, 255, 0.2)"
+                position="relative"
+                boxShadow="md"
+              >
+                <Image
+                  src={img.secondImage}
+                  alt={`Slide ${index + 1}`}
+                  w="100%"
+                  h="100%"
+                  objectFit="cover"
+                  borderRadius="lg"
+                  style={{
+                    filter: isActive ? 'none' : 'blur(4px)',
+                    transform: isActive ? 'scale(1)' : 'scale(1.05)',
+                    transition: 'all 0.4s ease-in-out',
+                  }}
+                />
+              </Box>
+            );
+          })}
         </SimpleGrid>
 
+        {/* Description and Navigation */}
         <Flex
-          justify={'space-between'}
-          w={'100%'}
-          flexDir={['column-reverse', 'row', 'row']}
+          justify="space-between"
+          w="100%"
+          flexDir={['column-reverse', 'row']}
         >
-          <Text maxW={'lg'} fontSize={'sm'} color={'gray.600'}>
+          <Text maxW="lg" fontSize="sm" color="gray.600">
             At Menta, we're redefining mental health support. Combining
             cutting-edge technology with compassionate care, we make therapy
-            approachable, personalized, and stigma- free. Whether you're seeking
+            approachable, personalized, and stigma-free. Whether you're seeking
             support for yourself or your community, Menta is here to guide you
             toward mental wellness.
           </Text>
-          <Flex gap={3}>
+
+          <Flex gap={3} mb={[3, 0]}>
             <Button
               onClick={previous}
               borderWidth={1}
               bg="gray.300"
-              borderRadius={'full'}
+              borderRadius="full"
+              aria-label="Previous Slide"
             >
               <ArrowBackIcon />
             </Button>
             <Button
               onClick={next}
-              variant={'outline'}
+              variant="outline"
               bg="gray.300"
-              borderRadius={'full'}
+              borderRadius="full"
+              aria-label="Next Slide"
             >
               <ArrowForwardIcon />
             </Button>

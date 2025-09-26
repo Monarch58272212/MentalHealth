@@ -26,6 +26,7 @@ export default function Page() {
   const [description, setDescription] = useState('');
   const toast = useToast();
 
+  //handle add
   const handleAdd = async () => {
     try {
       setLoading(true);
@@ -68,6 +69,7 @@ export default function Page() {
     }
   };
 
+  //handle read
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -78,9 +80,37 @@ export default function Page() {
         console.error('Error fetching data:', error);
       }
     };
-
     fetchData();
   }, []);
+
+  //handle delete
+  const handleDelete = async (id: string) => {
+    const confirm = window.confirm(
+      'Are you sure you want to delete this item?',
+    );
+    if (!confirm) return;
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/secondPage/${id}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        setData(data.filter((item) => item.id !== id));
+        toast({
+          title: 'Deleted',
+          description: 'Data successfully deleted.',
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.error('Error deleting data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Flex
       minH="100vh"
@@ -92,6 +122,7 @@ export default function Page() {
       px={4}
       w={'100%'}
       borderWidth={2}
+      gap={3}
     >
       <Box
         bg="white"
@@ -121,45 +152,48 @@ export default function Page() {
         </Stack>
       </Box>
 
-      <SimpleGrid spacing={4} minChildWidth="250px" w="100%" mt={6}>
+      <Box
+        width="95%"
+        sx={{
+          columnCount: [1, 2, 3, 4],
+        }}
+        gap={5}
+      >
         {data.map((item) => (
-          <Box
+          <Flex
             key={item.id}
-            p={4}
+            sx={{ breakInside: 'avoid', mb: 4 }}
+            p={2}
+            gap={2}
+            borderRadius={'md'}
+            display={'flex'}
+            flexDir={'column'}
             borderWidth={1}
-            borderRadius="md"
-            w="100%"
-            h="200px"
-            position="relative"
+            boxShadow={'sm'}
           >
-            {item.secondImage ? (
-              <Image
-                src={item.secondImage}
-                alt="Second Page Image"
-                fill
-                style={{ objectFit: 'cover', borderRadius: '8px' }}
-              />
-            ) : (
-              <Box
-                position="absolute"
-                top="0"
-                left="0"
-                right="0"
-                bottom="0"
-                bg="gray.200"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                borderRadius="8px"
+            <Image
+              src={item.secondImage}
+              alt="Banner"
+              width={400}
+              height={300}
+              style={{
+                objectFit: 'contain',
+                borderRadius: '0.5rem',
+              }}
+            />
+            <Flex gap={3} justify={'flex-end'}>
+              <Button colorScheme="green">Edit</Button>
+              <Button
+                colorScheme="red"
+                onClick={() => handleDelete(item.id)}
+                isLoading={loading}
               >
-                <Heading size="sm" color="gray.500">
-                  No Image
-                </Heading>
-              </Box>
-            )}
-          </Box>
+                Delete
+              </Button>
+            </Flex>
+          </Flex>
         ))}
-      </SimpleGrid>
+      </Box>
     </Flex>
   );
 }

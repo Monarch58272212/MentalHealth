@@ -3,7 +3,10 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HamburgerIcon, PhoneIcon } from '@chakra-ui/icons';
-import NavigationMenu from './NavigationMenu';
+import dynamic from 'next/dynamic';
+const NavigationMenu = dynamic(() => import('./NavigationMenu'), {
+  ssr: false,
+});
 
 export default function Navigation() {
   const links = [
@@ -30,7 +33,7 @@ export default function Navigation() {
     >
       <Flex>
         <Link href="/">
-          <Image src="/logo.png" alt="logo" width={90} height={90} />
+          <Image src="/logo.png" alt="logo" width={90} height={90} priority />
         </Link>
       </Flex>
 

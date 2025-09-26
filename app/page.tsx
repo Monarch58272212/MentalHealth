@@ -25,6 +25,7 @@ import ExpertsSkeleton from './components/ui/FifthSkeleton';
 import { lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import ThirdSkeleton from './components/ui/ThirdSkeleton';
+import SecondSkeleton from './components/ui/SecondSkeleton';
 
 export default function Home() {
   const thirdPageImage = [
@@ -151,7 +152,8 @@ export default function Home() {
       align={'center'}
       bg="gray.100"
     >
-      {/*    <UseImperativeHandle />*/}
+      {/*       <SecondSkeleton />   <UseImperativeHandle />*/}
+
       <FirstPage />
       <SecondPage />
       <ThirdPage thirdPageImage={thirdPageImage} />
