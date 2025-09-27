@@ -66,7 +66,7 @@ export default function () {
         <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 2, 4]}>
           {Array(4)
             .fill(null)
-            .map((img, index) => (
+            .map((_, index) => (
               <Flex
                 m={'auto'}
                 key={index}

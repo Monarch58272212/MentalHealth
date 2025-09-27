@@ -42,7 +42,7 @@ export default function Navigation() {
         </Link>
       </Flex>
 
-      <Flex gap={30} display={['none', 'none', 'none', 'flex']}>
+      <Flex gap={6} display={['none', 'none', 'none', 'flex']}>
         {links.map((link, index) => (
           <Flex key={index}>
             <Link href={link.href}>

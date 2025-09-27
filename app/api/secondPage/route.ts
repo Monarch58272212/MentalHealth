@@ -23,7 +23,10 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const allData = await prisma.secondPage.findMany({
-      orderBy: { createdAt: 'desc' },
+      take: 4,
+      orderBy: {
+        createdAt: 'desc', // pinakabago muna
+      },
     });
     return NextResponse.json(allData, { status: 200 });
   } catch (error) {

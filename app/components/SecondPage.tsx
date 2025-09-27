@@ -30,6 +30,7 @@ export default function SecondPage() {
   const [loading, setLoading] = useState(true);
   const toast = useToast();
 
+  //Read data from the API
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
@@ -39,7 +40,6 @@ export default function SecondPage() {
       if (!response.ok) {
         throw new Error(`HTTP error: ${response.status}`);
       }
-
       const result = await response.json();
       setData(result);
     } catch (error: any) {
@@ -91,7 +91,6 @@ export default function SecondPage() {
       gap={3}
       flexDir={['column', 'column', 'column', 'row']}
     >
-      {/* Left Banner Image Section */}
       <Flex
         maxW={['90%', '90%', '300px', '300px']}
         borderRadius="lg"
@@ -128,7 +127,6 @@ export default function SecondPage() {
         </Flex>
       </Flex>
 
-      {/* Right Content Section */}
       <Flex
         flexDir="column"
         align="flex-start"
@@ -141,7 +139,6 @@ export default function SecondPage() {
           Why Choose Mental For <br /> Your Mental Health Wellness?
         </Text>
 
-        {/* Image Slider Grid */}
         <SimpleGrid spacing={[2]} columns={[1, 2, 2, 4]} w={'100%'}>
           {data.map((img, index) => {
             const isActive = currentIndex === index;
@@ -163,10 +160,10 @@ export default function SecondPage() {
                 position="relative"
                 boxShadow="md"
                 _hover={{
-                  transform: 'scale(1.02)', // ✅ zoom a little
+                  transform: 'scale(1.02)',
                   transition: 'transform 0.3s ease',
                 }}
-                transition="all 0.4s ease" // ✅ smooth resize transition
+                transition="all 0.4s ease"
               >
                 <Image
                   src={img.secondImage || '/secondPage.jpg'}
@@ -174,7 +171,7 @@ export default function SecondPage() {
                   fill
                   style={{
                     objectFit: 'cover',
-                    transition: 'opacity 0.6s ease-in-out', // ✅ fade in
+                    transition: 'opacity 0.6s ease-in-out',
                     opacity: 1,
                   }}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -190,12 +187,8 @@ export default function SecondPage() {
           w="100%"
           flexDir={['column-reverse', 'row']}
         >
-          <Text maxW="lg" fontSize="sm" color="gray.600">
-            At Menta, we're redefining mental health support. Combining
-            cutting-edge technology with compassionate care, we make therapy
-            approachable, personalized, and stigma-free. Whether you're seeking
-            support for yourself or your community, Menta is here to guide you
-            toward mental wellness.
+          <Text maxW="lg" maxH={'md'} fontSize="sm" color="gray.600">
+            {data[currentIndex]?.description || 'No description available.'}
           </Text>
 
           <Flex gap={3} mb={[3, 0]}>
