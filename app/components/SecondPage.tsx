@@ -10,13 +10,13 @@ import {
   Box,
   Button,
   Flex,
-  Image,
   SimpleGrid,
   Text,
   useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState, useCallback } from 'react';
 import SecondSkeleton from './ui/SecondSkeleton';
+import Image from 'next/image';
 
 interface PageProps {
   id: string;
@@ -93,7 +93,7 @@ export default function SecondPage() {
     >
       {/* Left Banner Image Section */}
       <Flex
-        maxW="300px"
+        maxW={['90%', '90%', '300px', '300px']}
         borderRadius="lg"
         position="relative"
         boxShadow="lg"
@@ -103,6 +103,10 @@ export default function SecondPage() {
           src="/secondPage.jpg"
           alt="Banner"
           style={{ objectFit: 'contain', borderRadius: '0.5rem' }}
+          layout="responsive"
+          width={200}
+          height={200}
+          priority
         />
         <Flex
           justify="center"
@@ -138,7 +142,7 @@ export default function SecondPage() {
         </Text>
 
         {/* Image Slider Grid */}
-        <SimpleGrid spacing={[0, 1, 2]} columns={[1, 2, 3, 4]}>
+        <SimpleGrid spacing={[2]} columns={[1, 2, 2, 4]} w={'100%'}>
           {data.map((img, index) => {
             const isActive = currentIndex === index;
             return (
@@ -148,8 +152,8 @@ export default function SecondPage() {
                 w="100%"
                 h={
                   isActive
-                    ? ['90%', '150px', '190px']
-                    : ['90%', '150px', '150px']
+                    ? ['170px', '170px', '150px', '190px']
+                    : ['170px', '170px', '150px', '150px']
                 }
                 overflow="hidden"
                 borderRadius="lg"
@@ -158,19 +162,22 @@ export default function SecondPage() {
                 border="1px solid rgba(255, 255, 255, 0.2)"
                 position="relative"
                 boxShadow="md"
+                _hover={{
+                  transform: 'scale(1.02)', // ✅ zoom a little
+                  transition: 'transform 0.3s ease',
+                }}
+                transition="all 0.4s ease" // ✅ smooth resize transition
               >
                 <Image
-                  src={img.secondImage}
+                  src={img.secondImage || '/secondPage.jpg'}
                   alt={`Slide ${index + 1}`}
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                  borderRadius="lg"
+                  fill
                   style={{
-                    filter: isActive ? 'none' : 'blur(4px)',
-                    transform: isActive ? 'scale(1)' : 'scale(1.05)',
-                    transition: 'all 0.4s ease-in-out',
+                    objectFit: 'cover',
+                    transition: 'opacity 0.6s ease-in-out', // ✅ fade in
+                    opacity: 1,
                   }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </Box>
             );

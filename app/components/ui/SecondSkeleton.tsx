@@ -29,7 +29,7 @@ export default function () {
         boxShadow="lg"
         flexDir={'column'}
       >
-        <Flex w={'100%'} h={'md'} bg="gray.300">
+        <Flex w={'100%'} h={'md'}>
           <Skeleton w={'md'} />
         </Flex>
 
@@ -47,9 +47,9 @@ export default function () {
             Have a Questions?
           </SkeletonText>
 
-          <SkeletonCircle size="10" />
+          <SkeletonCircle size="10" startColor="gray.500" />
 
-          <SkeletonCircle size="5" />
+          <SkeletonCircle size="5" startColor="gray.500" />
         </Flex>
       </Flex>
       <Flex
@@ -63,7 +63,7 @@ export default function () {
           Why Choose Mental For <br /> Your Mental Health Wellness?{' '}
         </Text>
 
-        <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 3, 4]}>
+        <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 2, 4]}>
           {Array(4)
             .fill(null)
             .map((img, index) => (
@@ -98,7 +98,7 @@ export default function () {
             support for yourself or your community, Menta is here to guide you
             toward mental wellness.
           </SkeletonText>
-          <Flex gap={3}>
+          <Flex gap={3} mb={[3, 0]}>
             <SkeletonCircle size="10" />
             <SkeletonCircle size="10" />
           </Flex>

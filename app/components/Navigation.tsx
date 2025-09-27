@@ -21,7 +21,12 @@ export default function Navigation() {
   return (
     <Flex
       w="100%"
-      justify={['space-between', 'space-between', 'space-around']}
+      justify={[
+        'space-between',
+        'space-between',
+        'space-between',
+        'space-around',
+      ]}
       align="center"
       m="auto"
       position="fixed"
@@ -47,13 +52,13 @@ export default function Navigation() {
         ))}
       </Flex>
 
-      <Flex display={['none', 'none', 'flex']}>
+      <Flex display={['none', 'none', 'none', 'flex']} gap={3} align={'center'}>
         <Button fontSize={'sm'} gap={2} size="sm" borderRadius={'full'}>
           Contact Us
         </Button>
       </Flex>
 
-      <Flex display={['flex', 'flex', 'none']}>
+      <Flex display={['flex', 'flex', 'flex', 'none']}>
         <NavigationMenu links={links}>
           <HamburgerIcon />
         </NavigationMenu>
