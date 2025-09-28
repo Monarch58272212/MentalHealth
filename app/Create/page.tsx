@@ -219,7 +219,6 @@ export default function Page() {
         bg="gray.50"
         px={4}
         w={'100%'}
-        borderWidth={2}
         gap={3}
       >
         <Modal
