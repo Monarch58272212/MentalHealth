@@ -23,7 +23,7 @@ export default function () {
       flexDir={['column', 'column', 'column', 'row']}
     >
       <Flex
-        maxW={['300px']}
+        maxW={['90%', '90%', '300px', '300px']}
         borderRadius="lg"
         position={'relative'}
         boxShadow="lg"
@@ -57,13 +57,14 @@ export default function () {
         align={'flex-start'}
         justify={'flex-start'}
         gap={3}
+        w={'100%'}
       >
         <Text fontSize={['sm', 'md', 'md']}>• About Us</Text>
         <Text fontSize={['lg', 'lg', '3xl']}>
           Why Choose Mental For <br /> Your Mental Health Wellness?{' '}
         </Text>
 
-        <SimpleGrid spacing={[0, 1, 2, 2]} columns={[1, 2, 2, 4]}>
+        <SimpleGrid spacing={[2]} columns={[1, 2, 3, 4]} w={'100%'}>
           {Array(4)
             .fill(null)
             .map((_, index) => (
@@ -71,7 +72,7 @@ export default function () {
                 m={'auto'}
                 key={index}
                 w="100%"
-                h={['90%', '150px', '150px', '150px']}
+                h={['170px', '170px', '150px', '150px']}
                 borderRadius="lg"
                 position="relative"
                 boxShadow="md"
@@ -84,7 +85,8 @@ export default function () {
         <Flex
           justify={'space-between'}
           w={'100%'}
-          flexDir={['column-reverse', 'row', 'row']}
+          gap={3}
+          flexDir={['column-reverse', 'column-reverse', 'row']}
         >
           <SkeletonText
             maxW={'lg'}

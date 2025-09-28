@@ -23,7 +23,6 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const allData = await prisma.secondPage.findMany({
-      take: 4,
       orderBy: {
         createdAt: 'desc', // pinakabago muna
       },

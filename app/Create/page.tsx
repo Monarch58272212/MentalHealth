@@ -61,7 +61,7 @@ export default function Page() {
       setLoading(true);
 
       const req = await fetch(`/api/secondPage/${editId}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -70,6 +70,10 @@ export default function Page() {
           description: editDescription,
         }),
       });
+
+      if (!req.ok) {
+        throw new Error(`HTTP error! status: ${req.status}`);
+      }
 
       setData(
         data.map((item) =>
@@ -195,7 +199,7 @@ export default function Page() {
 
   return (
     <Flex flexDir={'row'} mt={20} w={'100%'}>
-      <Flex p={2} flexDir={'column'} maxW={'100px'} bg={'gray.100'}>
+      <Flex p={2} flexDir={'column'} bg={'gray.100'}>
         <Button gap={2} onClick={() => handleOpen2nd(true)}>
           <EditIcon color={'green.500'} boxSize={[3, 4, 5]} />
           <Text
@@ -260,7 +264,7 @@ export default function Page() {
         </Modal>
 
         <Box
-          width="95%"
+          width="90%"
           sx={{
             columnCount: [1, 2, 3, 4],
           }}
@@ -288,6 +292,10 @@ export default function Page() {
                   borderRadius: '0.5rem',
                 }}
               />
+              <Text fontSize={'sm'} color={'gray.500'}>
+                {item.description}
+              </Text>
+
               <Flex gap={3} justify={'flex-end'}>
                 <Button variant={'ghost'} onClick={() => handleOpenModal(item)}>
                   <EditIcon color={'blue.500'} boxSize={[3, 4, 5]} />

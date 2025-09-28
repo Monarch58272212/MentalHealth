@@ -31,7 +31,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const data = await request.json();
-  if (!data.imageURL || !data.name || !data.price) {
+  if (!data.secondImage || !data.description) {
     return NextResponse.json(
       { success: false, message: 'lagyan lahat oii' },
       { status: 400 },
@@ -42,8 +42,8 @@ export async function PATCH(
     const updated = await prisma.secondPage.update({
       where: { id: Number(id) },
       data: {
-        secondImage: data.imageURL,
-        description: data.name,
+        secondImage: data.secondImage,
+        description: data.description,
       },
     });
     return NextResponse.json(updated, { status: 200 });

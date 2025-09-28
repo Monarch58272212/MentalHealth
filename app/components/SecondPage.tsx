@@ -43,7 +43,7 @@ export default function SecondPage() {
       const result = await response.json();
       setData(result);
     } catch (error: any) {
-      console.error('Error fetching data:', error);
+      console.error('ERROR IN API:', error?.message || error);
       toast({
         title: 'Failed to load data',
         description: error.message || 'Please try again later.',
@@ -132,6 +132,7 @@ export default function SecondPage() {
         align="flex-start"
         justify="flex-start"
         gap={3}
+        w={'100%'}
         flex={1}
       >
         <Text fontSize={['sm', 'md']}>• About Us</Text>
@@ -139,7 +140,7 @@ export default function SecondPage() {
           Why Choose Mental For <br /> Your Mental Health Wellness?
         </Text>
 
-        <SimpleGrid spacing={[2]} columns={[1, 2, 2, 4]} w={'100%'}>
+        <SimpleGrid spacing={[2]} columns={[1, 2, 3, 4]} w={'100%'}>
           {data.map((img, index) => {
             const isActive = currentIndex === index;
             return (
@@ -149,7 +150,7 @@ export default function SecondPage() {
                 w="100%"
                 h={
                   isActive
-                    ? ['170px', '170px', '150px', '190px']
+                    ? ['170px', '170px', '150px', '170px']
                     : ['170px', '170px', '150px', '150px']
                 }
                 overflow="hidden"
@@ -185,7 +186,8 @@ export default function SecondPage() {
         <Flex
           justify="space-between"
           w="100%"
-          flexDir={['column-reverse', 'row']}
+          flexDir={['column-reverse', 'column-reverse', 'row']}
+          gap={3}
         >
           <Text maxW="lg" maxH={'md'} fontSize="sm" color="gray.600">
             {data[currentIndex]?.description || 'No description available.'}
