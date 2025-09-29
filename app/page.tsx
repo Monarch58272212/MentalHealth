@@ -26,6 +26,7 @@ import { lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import ThirdSkeleton from './components/ui/ThirdSkeleton';
 import SecondSkeleton from './components/ui/SecondSkeleton';
+import Navigation from './components/Navigation';
 
 export default function Home() {
   const thirdPageImage = [
@@ -153,7 +154,7 @@ export default function Home() {
       bg="gray.100"
     >
       {/*       <SecondSkeleton />   <UseImperativeHandle />*/}
-
+      <Navigation />
       <FirstPage />
       <SecondPage />
       <ThirdPage thirdPageImage={thirdPageImage} />

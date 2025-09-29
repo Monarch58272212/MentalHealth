@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { fonts } from './chakra_ui/fonts';
 import { Providers } from './chakra_ui/providers';
-import Navigation from './components/Navigation';
 import './globals.css';
 export const metadata: Metadata = {
   title: 'Mental Health',
@@ -19,10 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={fonts.poppins.variable}>
       <body>
-        <Providers>
-          <Navigation />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

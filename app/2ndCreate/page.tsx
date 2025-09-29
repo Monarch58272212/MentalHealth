@@ -22,6 +22,8 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { ArrowBackIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import Link from 'next/link';
+import { FaHome } from 'react-icons/fa';
 
 interface PageProps {
   id: string;
@@ -198,8 +200,20 @@ export default function Page() {
   };
 
   return (
-    <Flex flexDir={'row'} mt={20} w={'100%'}>
+    <Flex flexDir={'row'} w={'100%'}>
       <Flex p={2} flexDir={'column'} bg={'gray.100'}>
+        <Link href={'/'}>
+          <Button gap={2}>
+            <FaHome />
+            <Text
+              fontSize={'xs'}
+              color={'gray.500'}
+              display={['none', 'none', 'block']}
+            >
+              3rd
+            </Text>
+          </Button>
+        </Link>
         <Button gap={2} onClick={() => handleOpen2nd(true)}>
           <EditIcon color={'green.500'} boxSize={[3, 4, 5]} />
           <Text
@@ -210,6 +224,19 @@ export default function Page() {
             2nd
           </Text>
         </Button>
+
+        <Link href={'/3rdCreate'}>
+          <Button gap={2}>
+            <EditIcon color={'red.500'} boxSize={[3, 4, 5]} />
+            <Text
+              fontSize={'xs'}
+              color={'gray.500'}
+              display={['none', 'none', 'block']}
+            >
+              3rd
+            </Text>
+          </Button>
+        </Link>
       </Flex>
       <Flex
         minH="100vh"
@@ -256,13 +283,14 @@ export default function Page() {
                 Add
               </Button>
               <Button onClick={() => setIsOpen2nd(false)} variant="ghost">
-                Delete
+                Cancel
               </Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
 
         <Box
+          pt={10}
           width="90%"
           sx={{
             columnCount: [1, 2, 3, 4],
